@@ -13,6 +13,7 @@
             text-align: center;
             padding: 50px;
         }
+        
             h1 {
             color: #2176FF; /* Azul colvato */
         }
@@ -24,19 +25,40 @@
             pointer-events: none;
             position: absolute;
         }
+         button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #2176FF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #185bb5;
+        }
     </style>
 </head>
 <body>
     <h1>¡Bienvenido a mi página web!</h1>
     <p>Esta es mi primera pagina web :3</p>
-    
-    <!-- YouTube audio oculto -->
-    <iframe class="audio-youtube" 
-        src="https://www.youtube.com/watch?v=QwvkPVWrifE"
-        allow="autoplay"
-        allowfullscreen
-        frameborder="0">
-    </iframe>
- 
+     <button onclick="playAudio()">Reproducir audio de YouTube</button>
+    <div id="audioContainer"></div>
+    <script>
+        function playAudio() {
+            // Solo insertar el iframe la primera vez
+            if (!document.getElementById('yt-audio')) {
+                var container = document.getElementById('audioContainer');
+                var iframe = document.createElement('iframe');
+                iframe.id = 'yt-audio';
+                iframe.className = 'audio-youtube';
+                // Cambia VIDEO_ID por el ID del video de YouTube
+                iframe.src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1";
+                iframe.allow = "autoplay";
+                iframe.frameBorder = "0";
+                container.appendChild(iframe);
+            }
+        }
+    </script>
 </body>
 </html>
