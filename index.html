@@ -1,41 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Simple</title>
+    <title>Mi Página Mejorada</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 20px;
-            background-color: #a5ccdf;
-            color: #333;
-            text-align: center;
-            padding: 50px;
+        :root {
+            --primary: #176a95;
+            --bg: #e3f0fa;
+            --bg-dark: #16222a;
+            --text: #222;
+            --text-dark: #f1f1f1;
+            --card: #fff;
+            --card-dark: #1a2e3a;
         }
-        
-            h1 {
-            color: #176a95; /* Azul colvato */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 20px;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            padding: 32px;
+            transition: background 0.3s;
+        }
+        body.dark .container {
+            background: var(--card-dark);
+        }
+        h1 {
+            color: var(--primary);
+            margin-bottom: 0.25em;
         }
         .video-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            margin: 30px 0;
+            margin: 32px 0;
         }
         video {
-            width: 400px;
-            max-width: 90vw;
+            width: 100%;
+            max-width: 480px;
             border-radius: 10px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            margin-bottom: 12px;
+        }
+        .video-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .video-desc {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 16px;
+        }
+        body.dark .video-desc {
+            color: #b0c4d8;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin: 4px;
+        }
+        .btn:hover {
+            background: #1390c5;
+        }
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 12px; }
+            video { max-width: 98vw; }
         }
     </style>
 </head>
 <body>
-    <h1>¡Bienvenido a mi página web!</h1>
-    <p>Esta es mi primera pagina web :3</p>
-      <div class="video-container">
-      <video src="videos/FRUTIGER AERO. La promesa de un futuro BRILLANTE ILY4A.mp4" autoplay muted loop playsinline controls></video>
+    <div class="topbar">
+        <button class="btn" onclick="toggleDarkMode()">🌙/☀️</button>
     </div>
+    <div class="container">
+        <h1>¡Bienvenido a mi página web mejorada!</h1>
+        <p>Ahora puedes ver videos y disfrutar de un diseño más bonito y funcional.</p>
+        <div class="video-container">
+            <div class="video-title" id="videoTitle">FRUTIGER AERO: La promesa de un futuro BRILLANTE</div>
+            <video id="mainVideo" src="videos/FRUTIGER AERO. La promesa de un futuro BRILLANTE ILY4A.mp4" controls autoplay muted loop playsinline></video>
+            <div class="video-desc" id="videoDesc">
+                Un video sobre el famoso estilo Frutiger Aero y el optimismo futurista de los 2000s.
+            </div>
+            <button class="btn" onclick="nextVideo()">Cambiar Video</button>
+        </div>
+    </div>
+    <script>
+        // Video Gallery
+        const videos = [
+            {
+                src: "videos/FRUTIGER AERO. La promesa de un futuro BRILLANTE ILY4A.mp4",
+                title: "FRUTIGER AERO: La promesa de un futuro BRILLANTE",
+                desc: "Un video sobre el famoso estilo Frutiger Aero y el optimismo futurista de los 2000s."
+            },
+            {
+                src: "videos/video_ejemplo2.mp4",
+                title: "Video Alternativo",
+                desc: "Este es un video de ejemplo alternativo. ¡Puedes agregar más videos a la lista!"
+            }
+        ];
+        let current = 0;
+        function updateVideo() {
+            document.getElementById('mainVideo').src = videos[current].src;
+            document.getElementById('videoTitle').textContent = videos[current].title;
+            document.getElementById('videoDesc').textContent = videos[current].desc;
+        }
+        function nextVideo() {
+            current = (current + 1) % videos.length;
+            updateVideo();
+            document.getElementById('mainVideo').play();
+        }
+
+        // Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+        }
+    </script>
 </body>
 </html>
