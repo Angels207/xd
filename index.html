@@ -1,1 +1,95 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Visual Impactante</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        /* Fondo animado tipo gradiente */
+        body {
+            background: linear-gradient(270deg, #ff5f6d, #ffc371, #24c6dc, #5433ff, #ff5f6d);
+            background-size: 1000% 1000%;
+            animation: gradientBG 18s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        @keyframes gradientBG {
+            0% {background-position:0% 50%;}
+            50% {background-position:100% 50%;}
+            100% {background-position:0% 50%;}
+        }
+        .video-box {
+            background: rgba(255,255,255,0.12);
+            border-radius: 24px;
+            padding: 40px 30px 30px 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
+        .video-title {
+            font-size: 2em;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 12px #0006;
+        }
+        video {
+            border-radius: 12px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+            width: 400px;
+            max-width: 90vw;
+            margin-bottom: 20px;
+        }
+        .btn-ir {
+            padding: 16px 48px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(90deg, #ff5f6d 20%, #ffc371 80%);
+            color: #fff;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            cursor: pointer;
+            margin-top: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            letter-spacing: 1px;
+        }
+        .btn-ir:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+            background: linear-gradient(90deg, #24c6dc 20%, #5433ff 80%);
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .video-title { font-size: 1.2em; }
+            video { width: 98vw; }
+            .video-box { padding: 15px 5px; }
+            .btn-ir { padding: 12px 18px; font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-box">
+        <div class="video-title">✨ ¡Disfruta el video! ✨</div>
+        <!-- Reemplaza el src por tu video favorito -->
+        <video src="videos/tu-video.mp4" controls autoplay loop muted poster="videos/poster.jpg"></video>
+        <!-- Música de fondo (puedes cambiar el src) -->
+        <audio src="musica/fondo.mp3" autoplay loop>
+            Tu navegador no soporta audio HTML5.
+        </audio>
+        <button class="btn-ir" onclick="window.location.href='https://www.ejemplo.com'">
+            Ir a otra página
+        </button>
+    </div>
+</body>
+</html>
